@@ -34,6 +34,8 @@ export const TodoListForm = ({ todoList, saveTodoList }) => {
     saveTodoList(todoList.id, { todos: updatedTodos });
   };
 
+  console.log('todoList', todoList)
+
   return (
     <Card sx={{ margin: '0 1rem' }}>
       <CardContent>
@@ -43,10 +45,10 @@ export const TodoListForm = ({ todoList, saveTodoList }) => {
         >
           {todoList.todos.map(({ text, status, dueDate }, index) => (
             <TodoItem
-              deleteTodo={(id) => handleDeleteTodo(id)}
+              deleteTodo={() => handleDeleteTodo(index)}
               dueDate={dueDate}
               id={index}
-              key={index}
+              key={`${text}-${index}`}
               status={status}
               text={text}
               updateTodo={(updatedTodo) => handleUpdateTodo(updatedTodo, index)}

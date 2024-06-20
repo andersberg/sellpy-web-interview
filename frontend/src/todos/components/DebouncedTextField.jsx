@@ -8,8 +8,12 @@ export function DebouncedTextField({
   onChange,
   value,
 }) {
+  console.log({
+    value,
+  })
   const [textValue, setTextValue] = useState(value);
   const stableOnChangeRef = useRef(onChange);
+  const initialTextValue = useRef(value);
   const debouncedTextValue = useDebounce(textValue, debounceTime);
 
   useEffect(() => {
@@ -17,8 +21,11 @@ export function DebouncedTextField({
   }, [onChange]);
 
   useEffect(() => {
-    stableOnChangeRef.current(debouncedTextValue);
+    if (initialTextValue.current !== debouncedTextValue) {
+      stableOnChangeRef.current(debouncedTextValue);
+    }
   }, [debouncedTextValue]);
+
 
   return (
     <TextField

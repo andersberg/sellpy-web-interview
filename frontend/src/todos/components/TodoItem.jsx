@@ -71,7 +71,7 @@ export function TodoItem({
         aria-label='Delete todo'
         color='error'
         onClick={() => {
-          deleteTodo(id);
+          deleteTodo();
         }}
         size='small'
         sx={{ margin: '8px' }}

@@ -25,12 +25,12 @@ export function useTodoList() {
     mutation.mutate({ ...listToUpdate, todos })
   }
 
-  useEffect(() => {
-    if (todoLists) {
-      const firstTodoList = Object.keys(todoLists).at(0)
-      setActiveListId(firstTodoList)
-    }
-  }, [todoLists])
+  // useEffect(() => {
+  //   if (todoLists) {
+  //     const firstTodoList = Object.keys(todoLists).at(0)
+  //     setActiveListId(firstTodoList)
+  //   }
+  // }, [todoLists])
 
   return {
     activeListId,
@@ -50,6 +50,7 @@ const getTodoLists = () => {
 }
 
 const updateTodoLists = (todoList) => {
+  console.log('updateTodoLists', todoList)
   return fetch(API_URL, {
     method: 'PUT',
     body: JSON.stringify(todoList),
